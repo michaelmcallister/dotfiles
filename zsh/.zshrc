@@ -54,16 +54,13 @@ plugins=(git colored-man emoji aws)
 
 # User configuration
 
-export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl"
-export PATH="$PATH:/home/chronos/.gem/ruby/2.2.0/bin"
-
-
 source $ZSH/oh-my-zsh.sh
 
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8
 
 export EDITOR='vim'
+export TERMINAL="alacritty"
 
 
 # Compilation flags
@@ -80,7 +77,3 @@ export EDITOR='vim'
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias yaourt="yaourt --color --force --noconfirm"
-
-source /usr/share/doc/pkgfile/command-not-found.zsh
-eval $(dircolors -b ~/.dir_colors)
