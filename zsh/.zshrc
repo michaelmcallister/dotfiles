@@ -10,7 +10,7 @@ zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="cloud"
+ZSH_THEME="agnoster"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -50,7 +50,7 @@ ZSH_THEME="cloud"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git colored-man emoji aws)
+plugins=(git colored-man emoji aws kubectl kube-ps1) # razer-mouse-status)
 
 # User configuration
 
@@ -61,6 +61,12 @@ export LANG=en_US.UTF-8
 
 export EDITOR='vim'
 export TERMINAL="alacritty"
+export GOROOT=/usr/local/go
+export GOPATH=$HOME/workspace
+export PATH=$PATH:$GOROOT/bin
+export PATH=$PATH:/opt/android/platform-tools
+export ANDROID_HOME=/opt/android
+export JAVA_HOME=/usr/lib/jvm/default-java
 
 
 # Compilation flags
@@ -77,3 +83,6 @@ export TERMINAL="alacritty"
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+# added by travis gem
+[ -f /home/capslocktrojan/.travis/travis.sh ] && source /home/capslocktrojan/.travis/travis.sh

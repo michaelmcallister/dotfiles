@@ -9,9 +9,10 @@
 general {
     interval 		= 1
     colors 			= true
-    color_good      = '#88b090'
-    color_degraded  = '#ccdc90'
-    color_bad       = '#e89393'
+    color_good      = '#FFFFFF'
+    color_degraded  = '#F4B80C'
+    color_bad       = '#F4225A'
+    markup          = 'pango'
 }
 
 order += "volume master"
@@ -22,18 +23,19 @@ order += "disk /"
 #order += "run_watch VPN"
 order += "wireless wlp2s0"
 order += "battery 0"
-order += "cpu_temperature 0"
+#order += "cpu_temperature 0"
 order += "cpu_usage 0"
 order += "load"
 order += "tztime local"
+order += "tztime time"
 
 wireless wlp2s0 {
-    format_up = " %essid %ip"
+    format_up = "<span font='FontAwesome' foreground='#F4225A'></span>%essid"
     format_down = "disconnected"
 }
 
 battery 0 {
-    format = "%status %percentage %remaining"
+    format = "<span font='Terminus' foreground='#F4225A'>%status</span> %percentage %remaining"
     format_down = ""
     last_full_capacity = true
     integer_battery_capacity = true
@@ -54,31 +56,37 @@ run_watch VPN {
 }
 
 tztime local {
-    format = "%V  %A %e %B   %H:%M:%S"
+    format_time = "%A %e %B"
+    format="<span font='Terminus' foreground='#F4225A'> </span>%time"
+}
+
+tztime time {
+    format_time = "%H:%M:%S"
+    format="<span font='Terminus' foreground='#F4225A'> </span>%time"
 }
 
 load {
-    format = " %1min"
+    format = "<span font='Terminus' foreground='#F4225A'> </span>%1min"
 }
 
 cpu_usage {
-    format = " %usage"
+    format = "<span font='Terminus' foreground='#F4225A'> </span>%usage"
 }
 
 cpu_temperature 0 {
-	format = "🌡️ %degrees°C"
+	format = "<span font='Terminus' foreground='#F4225A'>🌡️%</span>degrees°C"
 }
 
 disk "/" {
-	format = " %avail"
+	format = "<span font='Terminus' foreground='#F4225A'>&#xf0a0; </span>%avail"
 	prefix_type	= custom
 	low_threshold = 20
 	threshold_type = percentage_avail
 }
 
 volume master {
-    format = "%volume  "
-    format_muted = " "
+    format = "<span font='Terminus' foreground='#F4225A'>&#xf028;</span> %volume"
+    format_muted = "<span font='Terminus' foreground='#F4225A'&#xf026;</span>"
     device = "default"
     mixer = "Master"
     mixer_idx = 0
