@@ -1,0 +1,173 @@
+; vim:ft=dosini
+
+[colors]
+background = #2E3440
+buffer = #4c566a
+foreground = #D8DEE9
+nord6 = #ECEFF4
+nord7 = #8FBCBB
+nord8 = #88C0D0
+nord9 = #81A1C1
+urgent = #BF616A
+warning = #D08770
+notify = #EBCB8B
+success = #A3BE8C
+function = #B48EAD
+
+[settings]
+screenchange-reload = true
+
+[global/wm]
+margin-top = 0
+margin-bottom = 0
+
+[bar/top]
+enable-ipc = true
+monitor = ${env:MONITOR:LVDS-1}
+width = 100%
+height = 25
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+padding-left = 0
+padding-right = 2
+line-size = 3
+
+module-margin-left = 1
+module-margin-right = 1
+
+font-0= Fira Code:pixelsize=10;1
+font-1= TerminessTTF Nerd Font Mono:style=Regular:size=15;1
+
+modules-left = i3 
+modules-center = xwindow
+modules-right = wireless-network vpn date battery
+
+tray-position = right
+tray-detached = false
+tray-padding = 3
+tray-maxsize = 20
+scroll-up = i3wm-wsnext
+scroll-down = i3wm-wsprev
+
+[module/i3]
+type = internal/i3
+index-sort = true
+pin-workspaces = true
+wrapping-scroll = true
+fuzzy-match = true
+
+ws-icon-0 = main;
+ws-icon-1 = code;
+ws-icon-2 = web;爵
+ws-icon-3 = terminal;
+ws-icon-4 = chat;
+
+format = <label-state> <label-mode>
+
+label-focused = %icon% %name%
+label-focused-underline = ${colors.function}
+label-focused-foreground = ${colors.nord7}
+label-focused-padding = 2
+
+label-unfocused = %icon% %name%
+label-unfocused-foreground = ${colors.nord9}
+label-unfocused-padding = 2
+
+label-urgent = %icon% %name%!
+label-urgent-foreground = ${colors.urgent}
+label-urgent-background = ${colors.foreground}
+label-urgent-padding = 2
+
+label-separator = |
+label-separator-foreground = ${colors.buffer}
+
+label-visible = %icon% %name%
+label-visible-padding = 2
+label-visible-foreground = ${colors.urgent}
+label-visible-background = ${colors.foreground}
+
+[module/date]
+type = internal/date
+format = <label>
+label =  %date%
+date = %H:%M
+
+date-alt = %Y-%m-%d %a
+interval = 5
+label-margin = 1
+label-underline = ${colors.nord8}
+
+[module/xwindow]
+type = internal/xwindow
+format = <label>
+label-maxlen = 50
+
+[module/battery]
+type = internal/battery
+full-at = 99
+
+; Use the following command to list batteries and adapters:
+; $ ls -1 /sys/class/power_supply/
+battery = BAT1
+adapter = ACAD
+
+poll-interval = 5
+
+format-charging = <animation-charging> <label-charging>
+format-charging-underline = ${colors.foreground}
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+animation-charging-framerate = 750
+
+format-discharging = <ramp-capacity> <label-discharging>
+format-discharging-underline = ${colors.notify}
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+ramp-capacity-foreground = ${colors.notify}
+
+label-full = 
+label-full-foreground = ${colors.success}
+label-full-underline = ${colors.success}
+
+[module/vpn]
+type = custom/script
+exec = $HOME/.config/polybar/scripts/vpn_module.sh
+click-left = $HOME/.config/polybar/scripts/vpn_module.sh --toggle-connection &
+click-right = $HOME/.config/polybar/scripts/vpn_module.sh --location-menu &
+click-middle = $HOME/.config/polybar/scripts/vpn_module.sh --ip_address &
+interval = 5
+format = <label>
+format-background = ${colors.background}
+format-underline = #000f0f0f
+
+[module/wireless-network]
+type = internal/network
+interface = wlp3s0
+label-connected = " %essid%"
+label-connected-underline = ${colors.nord7}
+ramp-signal-0 = 
+ramp-signal-1 = 
+ramp-signal-2 = 
+ramp-signal-3 = 
+format-connected = <ramp-signal><label-connected>
+ramp-signal-0-foreground = ${colors.urgent}
+ramp-signal-0-underline = ${colors.urgent}
+
+ramp-signal-1-foreground = ${colors.notify}
+ramp-signal-1-underline = ${colors.notify}
+
+ramp-signal-2-foreground = ${colors.nord7}
+ramp-signal-2-underline = ${colors.nord7}
+
+ramp-signal-3-foreground = ${colors.success}
+ramp-signal-3-underline = ${colors.success}
+; vim:ft=dosini
+
