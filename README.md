@@ -1,6 +1,4 @@
 [![LinkedIn][linkedin-shield]][linkedin-url]
-
-<br />
 <p align="center">
   <h3 align="center">Dotfiles</h3>
 
