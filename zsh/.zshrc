@@ -81,7 +81,16 @@ export GPG_TTY=$(tty)
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
-# export LANG=en_US.UTF-8
+export LANG=en_US.UTF-8
+
+export EDITOR='vim'
+export TERMINAL="alacritty"
+export GOROOT=/usr/local/go
+export GOPATH=$HOME/workspace
+export PATH=$PATH:$GOROOT/bin
+export PATH=$PATH:/opt/android/platform-tools
+export ANDROID_HOME=/opt/android
+export JAVA_HOME=/usr/lib/jvm/default-java
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
