@@ -1,9 +1,9 @@
 ; vim:ft=dosini
 
 [colors]
-background = #2E3440
+background = #3b4252
 buffer = #4c566a
-foreground = #D8DEE9
+foreground = #E5E9F0
 nord6 = #ECEFF4
 nord7 = #8FBCBB
 nord8 = #88C0D0
@@ -23,7 +23,7 @@ margin-bottom = 0
 
 [bar/top]
 enable-ipc = true
-monitor = ${env:MONITOR:LVDS-1}
+monitor = ${env:MONITOR}
 width = 100%
 height = 25
 
@@ -34,15 +34,15 @@ padding-left = 0
 padding-right = 2
 line-size = 3
 
-module-margin-left = 1
+module-margin-left = 1 
 module-margin-right = 1
 
 font-0= Fira Code:pixelsize=10;1
 font-1= TerminessTTF Nerd Font Mono:style=Regular:size=15;1
 
-modules-left = i3 
+modules-left = poweroff i3 
 modules-center = xwindow
-modules-right = wireless-network vpn date battery
+modules-right = wireless-network vpn pulseaudio battery date
 
 tray-position = right
 tray-detached = false
@@ -58,7 +58,7 @@ pin-workspaces = true
 wrapping-scroll = true
 fuzzy-match = true
 
-ws-icon-0 = main;
+ws-icon-0 = home;
 ws-icon-1 = code;
 ws-icon-2 = web;爵
 ws-icon-3 = terminal;
@@ -66,27 +66,26 @@ ws-icon-4 = chat;
 
 format = <label-state> <label-mode>
 
-label-focused = %icon% %name%
+label-focused = %icon% 
 label-focused-underline = ${colors.function}
-label-focused-foreground = ${colors.nord7}
+label-focused-foreground = ${colors.foreground}
 label-focused-padding = 2
 
-label-unfocused = %icon% %name%
-label-unfocused-foreground = ${colors.nord9}
+label-unfocused = %icon% 
+label-unfocused-foreground = ${colors.foreground}
 label-unfocused-padding = 2
 
-label-urgent = %icon% %name%!
-label-urgent-foreground = ${colors.urgent}
-label-urgent-background = ${colors.foreground}
+label-urgent = %icon%!
+label-urgent-background = ${colors.background}
 label-urgent-padding = 2
 
 label-separator = |
 label-separator-foreground = ${colors.buffer}
 
-label-visible = %icon% %name%
+label-visible = %icon%
 label-visible-padding = 2
-label-visible-foreground = ${colors.urgent}
-label-visible-background = ${colors.foreground}
+label-visible-foreground = ${colors.foreground}
+label-visible-background = ${colors.urgent}
 
 [module/date]
 type = internal/date
@@ -169,5 +168,48 @@ ramp-signal-2-underline = ${colors.nord7}
 
 ramp-signal-3-foreground = ${colors.success}
 ramp-signal-3-underline = ${colors.success}
+
+[module/pulseaudio]
+type = internal/pulseaudio
+
+; Sink to be used, if it exists (find using `pacmd list-sinks`, name field)
+; If not, uses default sink
+sink = alsa_output.pci-0000_00_1b.0.analog-stereo
+
+; Use PA_VOLUME_UI_MAX (~153%) if true, or PA_VOLUME_NORM (100%) if false
+; Default: true
+use-ui-max = true
+
+; Interval for volume increase/decrease (in percent points)
+; Default: 5
+interval = 5
+
+; Available tags:
+;   <label-volume> (default)
+;   <ramp-volume>
+;   <bar-volume>
+format-volume = <ramp-volume><label-volume>
+format-spacing = 1
+label-volume-underline = ${colors.function}
+format-foregound = ${colors.foreground}
+label-muted =  muted
+label-muted-underline = ${colors.urgent}
+
+ramp-volume-0 = "奄 "
+ramp-volume-0-underline = ${colors.function}
+ramp-volume-1 = "奔 "
+ramp-volume-1-underline = ${colors.function}
+ramp-volume-2 = "墳 "
+ramp-volume-2-underline = ${colors.function}
+
+click-right = pavucontrol
+
+[module/poweroff]
+type = custom/script
+exec="echo "
+click-left = $HOME/.local/bin/logout.sh
+format-foreground = ${colors.foreground}
+format-underline = ${colors.notify} 
+
 ; vim:ft=dosini
 
