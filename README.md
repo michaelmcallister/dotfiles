@@ -22,13 +22,8 @@ You can of course choose to manage it yourself :-).
 
 ## Use with GNU Stow
 
-1. ```git clone``` the repo
-2. ```cd``` into the repo (default name is dotfiles)
-3. run ```stow <foldername> ``` to copy that symlink
-4. Or run it in a loop for all of them like so:
-
 ```bash
-for dir in $(ls -d */); do stow $dir ; done
+make stow
 ```
 
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=flat-square&logo=linkedin&colorB=555
