@@ -1,0 +1,2 @@
+# Never deploy X authentication cookies.
+^/\.Xauthority.*$

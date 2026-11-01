@@ -1,0 +1,3 @@
+# X authentication cookies are machine-local credentials.
+.Xauthority
+.Xauthority-*

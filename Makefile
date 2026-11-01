@@ -1,27 +1,17 @@
 SHELL := /bin/sh
 STOW ?= stow
 TARGET ?= $(HOME)
-PACKAGES ?= terminal git i3 polybar rofi scripts tmux vim nvim X zsh
+PACKAGES ?= terminal git scripts tmux vim nvim zsh
+ifeq ($(shell uname -s),Linux)
+PACKAGES += i3 polybar rofi X
+endif
 
-.PHONY: install uninstall restow list
-
+.PHONY: install uninstall stow restow list
 install:
-	@echo "Stowing packages into $(TARGET)"
-	@for package in $(PACKAGES); do \
-		$(STOW) --target="$(TARGET)" $$package; \
-	done
-
+	$(STOW) --target="$(TARGET)" $(PACKAGES)
 uninstall:
-	@echo "Unstowing packages from $(TARGET)"
-	@for package in $(PACKAGES); do \
-		$(STOW) -D --target="$(TARGET)" $$package; \
-	done
-
-stow:
-	@echo "Restowing packages into $(TARGET)"
-	@for package in $(PACKAGES); do \
-		$(STOW) -R --target="$(TARGET)" $$package; \
-	done
-
+	$(STOW) -D --target="$(TARGET)" $(PACKAGES)
+stow restow:
+	$(STOW) -R --target="$(TARGET)" $(PACKAGES)
 list:
 	@echo $(PACKAGES)
